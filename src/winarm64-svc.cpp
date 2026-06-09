@@ -4,16 +4,6 @@
 
 using namespace Nt;
 
-DWORD64 GetTeb64() {
-	return (DWORD64)__getReg(18);
-}
-
-DWORD64 GetPeb64() {
-	// The PEB can be accessed via the TEB at offset 0x60
-	DWORD64 teb = GetTeb64();
-	return *(DWORD64*)(teb + 0x60);
-}
-
 DWORD64 GetNtdll64() {
 	return GetModuleBase64(L"ntdll.dll");
 }
@@ -82,7 +72,7 @@ DWORD64 GetProcAddress64(DWORD64 ModuleBase, PCSTR ProcName) {
 	return -1;
 }
 
-DWORD64 GetServiceNumber64(DWORD64 ModuleBase, PCSTR ProcName) {
+DWORD64 GetServiceAddress64(DWORD64 ModuleBase, PCSTR ProcName) {
 	if (!ModuleBase || !ProcName) {
 		return -1;
 	}
@@ -125,13 +115,13 @@ int main() {
 	printf("ntdll.dll base: 0x%llx\n", ntdll);
 	DWORD64 kernel = GetKernel64();
 	printf("kernel32.dll base: 0x%llx\n", kernel);
-	DWORD64 proc = GetProcAddress64(ntdll, "NtReadVirtualMemory");
+	DWORD64 proc = GetServiceAddress64(ntdll, "NtReadVirtualMemory");
 	printf("NtReadVirtualMemory address: 0x%llx\n", proc);
 	DWORD64 value = 0x1122334455667788;
 	DWORD64 output = 0;
 	SIZE_T bytesRead = 0;
 
-	DWORD64 result = A64Call(
+	DWORD64 result = A64Syscall(
 		proc,
 		(DWORD64)-1,
 		(DWORD64)&value,
