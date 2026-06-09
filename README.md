@@ -1,5 +1,6 @@
 <div align="center">
 <h1>winarm64-svc</h1>
+<h4>author: freefly</h4>
 
 [English](README.md) | [简体中文](README_CN.md)
 
