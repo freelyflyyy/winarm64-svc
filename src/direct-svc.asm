@@ -1,5 +1,19 @@
 		AREA |.text|, CODE, READONLY
+		EXPORT GetTeb64
+		EXPORT GetPeb64
 		EXPORT A64CallImpl
+		
+
+GetTeb64	PROC
+			mov x0, x18
+			ret
+GetTeb64	ENDP
+
+
+GetPeb64	PROC
+			ldr x0, [x18, #0x60]
+			ret
+GetPeb64	ENDP
 
 
 A64CallImpl PROC
@@ -37,4 +51,5 @@ call_target
 			ldp x19, x20, [sp], #16
 			ret
 A64CallImpl ENDP
+
 			END
