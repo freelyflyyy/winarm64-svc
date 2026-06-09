@@ -1,6 +1,6 @@
 <div align="center">
 <h1>winarm64-svc</h1>
-<h5>author: freefly</h5>
+<h4>author: freefly</h4>
 
 [English](README.md) | [简体中文](README_CN.md)
 
@@ -293,6 +293,7 @@ DWORD64 result = A64Syscall(
   `SVC` 指令地址。
 
 ---
+
 ## 示例
 
 当前示例会解析 `NtReadVirtualMemory`，定位其 `SVC` 指令，并用一个本地读取
@@ -361,6 +362,7 @@ stub 模式：
 汇编文件必须使用 ARM64 汇编器编译，而不是 x86 MASM。
 
 ---
+
 ## 注意事项
 
 - 本项目依赖 Windows 内部结构。

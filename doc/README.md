@@ -2,7 +2,7 @@
 <h1>winarm64-svc</h1>
 <h4>author: freefly</h4>
 
-[English](README.md) | [Simplified Chinese](README_CN.md)
+[English](README.md) | [简体中文](README_CN.md)
 
 </div>
 
@@ -300,6 +300,7 @@ Notes:
   instruction address in an `ntdll.dll` Native API stub.
 
 ---
+
 ## Example
 
 The current sample resolves `NtReadVirtualMemory`, locates its `SVC`
@@ -369,6 +370,7 @@ Required tools:
 The assembly file must be built with the ARM64 assembler, not x86 MASM.
 
 ---
+
 ## Notes
 
 - This project depends on Windows internal structures.
